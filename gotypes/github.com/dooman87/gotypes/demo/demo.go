@@ -10,6 +10,7 @@ import (
 	"reflect"
 )
 
+
 const src  = `package greet
 
 	var Greeting = "Hello "
@@ -18,29 +19,6 @@ const src  = `package greet
 		return Greeting + "Bob"
 	}
 `
-/*
-const src  = `package greet
-
-	type Greet struct {
-		GreetKeyword string
-		Whom string
-	}
-
-	func (g *Greet) String() string {
-		return g.GreetKeyword + " " + g.Whom
-	}
-
-	var Greeting = "Hello "
-
-	func greetBob() string {
-		g := &Greet {
-			GreetKeyword: "Hello",
-			Whom: "Bob",
-		}
-		return g.String()
-	}
-`
-*/
 
 func main() {
 	var fset *token.FileSet
