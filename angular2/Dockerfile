@@ -1,7 +1,7 @@
 FROM alpine:3.3
 MAINTAINER Dmitry Pokidov
 
-RUN apk add --update nodejs git && rm -rf /var/cache/apk/*
+RUN apk add --update nodejs git python make g++ && rm -rf /var/cache/apk/*
 
 WORKDIR /
 RUN git init &&\
@@ -10,7 +10,12 @@ RUN git init &&\
 	echo "angular2/angular2-quickstart" >> .git/info/sparse-checkout &&\
 	git pull origin master
 
-WORKDIR /angular2-quickstart
+WORKDIR /angular2/angular2-quickstart
+RUN npm install -g tsd
 RUN npm install
 
-ENTRYPOINT [cd /angular2-quickstart && RUN npm start]
+EXPOSE 3000 3001
+VOLUME ["/angular2/angular2-quickstart"]
+
+ENTRYPOINT ["npm", "start"]
+
