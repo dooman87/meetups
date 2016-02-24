@@ -15,7 +15,7 @@ RUN npm install -g tsd
 RUN npm install
 
 EXPOSE 3000 3001
-VOLUME ["/angular2/angular2-quickstart"]
+#VOLUME ["/angular2/angular2-quickstart/app"]
 
 ENTRYPOINT ["npm", "start"]
 
