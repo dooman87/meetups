@@ -3,18 +3,23 @@ MAINTAINER Dmitry Pokidov
 
 RUN apk add --update nodejs git python make g++ && rm -rf /var/cache/apk/*
 
+WORKDIR /
+
+#ADD index.html /angular2/angular2-quickstart/
+#ADD tsconfig.json /angular2/angular2-quickstart/
+#ADD package.json /angular2/angular2-quickstart/
 RUN git init &&\
 	git remote add -f origin https://github.com/dooman87/meetups.git &&\
 	git config core.sparseCheckout true &&\
-	echo "angular2/demo" >> .git/info/sparse-checkout &&\
+	echo "angular2/angular2-quickstart" >> .git/info/sparse-checkout &&\
 	git pull origin master
 
-WORKDIR /angular2/demo
+WORKDIR /angular2/angular2-quickstart
 RUN npm install -g tsd
-RUN npm install 
+RUN npm install
 
 EXPOSE 3000 3001
-VOLUME ["/angular2/demo/app"]
+VOLUME ["/angular2/angular2-quickstart/app"]
 
 ENTRYPOINT ["npm", "start"]
 
