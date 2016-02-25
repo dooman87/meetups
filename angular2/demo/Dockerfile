@@ -3,10 +3,11 @@ MAINTAINER Dmitry Pokidov
 
 RUN apk add --update nodejs git python make g++ && rm -rf /var/cache/apk/*
 
-WORKDIR /
-ADD package.json /angular2/demo/
-ADD tsconfig.json /angular2/demo/
-ADD app/ angular2/demo/app/
+RUN git init &&\
+	git remote add -f origin https://github.com/dooman87/meetups.git &&\
+	git config core.sparseCheckout true &&\
+	echo "angular2/demo" >> .git/info/sparse-checkout &&\
+	git pull origin master
 
 WORKDIR /angular2/demo
 RUN npm install -g tsd
