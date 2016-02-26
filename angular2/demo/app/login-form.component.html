@@ -1,0 +1,14 @@
+<form>
+    <fieldset class="form-group row">
+        <input type="Email" class="form-control col-md-12" placeholder="Email"
+                [(ngModel)]="model.login" required/>
+    </fieldset>
+    <fieldset class="form-group row">
+        <input type="password" class="form-control col-md-12" placeholder="Password"
+               [(ngModel)]="model.password"/>
+    </fieldset>
+    <div class="row">
+        <span class="btn btn-primary pull-md-right"
+                (click)="doLogin()">Sign In</span>
+    </div>
+</form>
