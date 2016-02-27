@@ -7,7 +7,8 @@ import {NG_VALIDATORS, Control, Validator} from "angular2/common"
 })
 export class EmailValidatorDirective implements Validator {
     validate(c: Control): {[key: string]: any} {
-        return c.value && c.value.indexOf('@') > 0 ? null :
-            {'emailvalidate': 'Not correct email'};
+        return c.value && c.value.indexOf('@') > 0 ?
+            null :
+            {'emailvalidate': 'Please enter correct email'};
     }
 }

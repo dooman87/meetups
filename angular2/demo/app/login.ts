@@ -1,8 +1,8 @@
 export class Login {
-    login: string;
+    email: string;
     password: string;
 
     toString() {
-        return this.login + " " + this.password
+        return this.email + " " + this.password
     }
 }
