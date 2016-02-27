@@ -7,7 +7,7 @@ import {User} from './user'
         <div class="navbar navbar-light bg-faded">
             <a class="navbar-brand" href="#">NG2 DEMO</a>
             <p class="pull-xs-right navbar-brand">
-                Good evening, {{username}}
+                Good evening, {{username | uppercase}}
             </p>
         </div>
     `
