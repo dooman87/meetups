@@ -1,12 +1,16 @@
 <form>
-    <fieldset class="form-group row">
-        <input type="Email" class="form-control col-md-12" placeholder="Email"
-                [(ngModel)]="model.login" required/>
+    <fieldset class="form-group row" [ngClass]="{'has-danger':!login.valid && login.dirty}">
+        <input type="email" class="form-control col-md-12" placeholder="Email"
+                [(ngModel)]="model.login" ngControl="email" #login="ngForm"
+               [ngClass]="{'form-control-danger':!login.valid && login.dirty}" required email/>
+        <span class="text-help small" [ngClass]="{'invisible':login.valid || login.pristine}">
+            Please enter valid email
+        </span>
     </fieldset>
-    <fieldset class="form-group row">
+    <div class="form-group row">
         <input type="password" class="form-control col-md-12" placeholder="Password"
                [(ngModel)]="model.password"/>
-    </fieldset>
+    </div>
     <div class="row">
         <span class="btn btn-primary pull-md-right"
                 (click)="doLogin()">Sign In</span>
