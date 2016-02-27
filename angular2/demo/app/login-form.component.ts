@@ -1,8 +1,9 @@
-import {Component} from 'angular2/core';
-import {Login} from './login'
+import {Component, EventEmitter, Output} from 'angular2/core';
 import {HTTP_PROVIDERS} from 'angular2/http';
+import {Login} from './login'
 import {EmailValidatorDirective} from './email-validator.directive'
 import {UserService} from './user.service'
+import {User} from './user'
 
 @Component({
     selector: 'login-form',
@@ -13,13 +14,14 @@ import {UserService} from './user.service'
 export class LoginFormComponent{
     model = new Login();
     invalidLogin = false;
+    @Output() loggedIn: EventEmitter<User> = new EventEmitter();
 
     constructor(private _userService: UserService) {}
 
     doLogin() {
         this._userService.login(this.model)
             .subscribe(
-                user => { window.alert(JSON.stringify(user)) },
+                user => { this.loggedIn.emit(user) },
                 error => { this.invalidLogin = true; }
             );
     }

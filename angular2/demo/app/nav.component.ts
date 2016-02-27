@@ -1,4 +1,5 @@
 import {Component} from 'angular2/core';
+import {User} from './user'
 
 @Component({
     selector: 'nav',
@@ -13,4 +14,9 @@ import {Component} from 'angular2/core';
 })
 export class NavComponent {
     private username = 'Anonymous';
+
+    updateUser(user: User) {
+        this.username = user.firstname + ' ' + user.lastname;
+    }
 }
+
