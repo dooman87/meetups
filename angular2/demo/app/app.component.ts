@@ -1,27 +1,41 @@
-import {Component, ViewChild} from 'angular2/core';
+import {Component, ViewChild, OnInit} from 'angular2/core';
 import {LoginFormComponent} from './login-form.component'
+import {DashboardComponent} from './dashboard.component'
 import {NavComponent} from './nav.component'
+import {RouteConfig, ROUTER_DIRECTIVES, Router} from 'angular2/router';
+import {UserService} from './user.service';
+import {HTTP_PROVIDERS} from 'angular2/http';
 
 @Component({
     selector: 'my-app',
     template: `
         <nav></nav>
 
-        <div class="row">
-            <div class="col-sm-offset-3 col-md-offset-4 col-md-4 col-sm-6">
-                <div style="padding: 1.25rem; margin-top: 1.25rem; margin-bottom: 1.25rem; border: 1px solid #eee; border-radius: .25rem;">
-                    <login-form (loggedIn) = "onLogin($event)"></login-form>
-                </div>
-            </div>
+        <div class="container">
+            <router-outlet></router-outlet>
         </div>
     `,
-    directives: [LoginFormComponent, NavComponent]
+    directives: [LoginFormComponent, NavComponent, ROUTER_DIRECTIVES],
+    providers: [UserService, HTTP_PROVIDERS]
 })
+@RouteConfig([
+    {path: '/', name: 'Login', component: LoginFormComponent, useAsDefault: true},
+    {path: '/dashboard', name: 'Dashboard', component: DashboardComponent}
+])
 export class AppComponent {
     @ViewChild(NavComponent)
     private nav: NavComponent;
 
+    constructor(private userService: UserService,
+                private _router:Router) {
+        userService.loginSource$.subscribe(
+            user => {this.onLogin(user);}
+        );
+    }
+
     onLogin(user) {
-        this.nav.updateUser(user)
+        this.nav.updateUser(user);
+        this._router.navigateByUrl('/dashboard');
     }
 }
+

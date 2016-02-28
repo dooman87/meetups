@@ -1,21 +1,32 @@
-<form #loginForm="ngForm" (ngSubmit)="doLogin()">
-    <fieldset class="form-group row" [ngClass]="{'has-danger':!login.valid && login.dirty}">
-        <input type="email" class="form-control col-md-12" placeholder="Email"
-                [(ngModel)]="model.email" ngControl="email" #login="ngForm"
-               [ngClass]="{'form-control-danger':!login.valid && login.dirty}" required email/>
-        <span class="text-help small" [ngClass]="{'invisible':login.valid || login.pristine}">
-            Please, enter valid email address
-        </span>
-    </fieldset>
-    <div class="form-group row" [ngClass]="{'has-danger':!password.valid && password.dirty}">
-        <input type="password" class="form-control col-md-12" placeholder="Password"
-               (keyup)="model.password = password.value" ngControl="password" #password="ngForm" required/>
-        <span class="text-help small" [ngClass]="{'invisible':password.valid || password.pristine}">
-            Please, enter password
-        </span>
+<div class="row">
+    <div class="col-sm-offset-3 col-md-offset-4 col-md-4 col-sm-6">
+        <div style="padding: 1.25rem; margin-top: 1.25rem; margin-bottom: 1.25rem; border: 1px solid #eee; border-radius: .25rem;">
+
+            <form #loginForm="ngForm" (ngSubmit)="doLogin()">
+                <fieldset class="form-group row" [ngClass]="{'has-danger':!login.valid && login.dirty}">
+                    <input type="email" class="form-control col-md-12" placeholder="Email"
+                           [(ngModel)]="model.email" ngControl="email" #login="ngForm"
+                           [ngClass]="{'form-control-danger':!login.valid && login.dirty}" required email/>
+                    <span class="text-help small" [ngClass]="{'invisible':login.valid || login.pristine}">
+                        Please, enter valid email address
+                    </span>
+                </fieldset>
+                <div class="form-group row" [ngClass]="{'has-danger':!password.valid && password.dirty}">
+                    <input type="password" class="form-control col-md-12" placeholder="Password"
+                           (keyup)="model.password = password.value" ngControl="password" #password="ngForm" required/>
+                    <span class="text-help small" [ngClass]="{'invisible':password.valid || password.pristine}">
+                        Please, enter password
+                    </span>
+                </div>
+                <div class="row">
+                    <button class="btn btn-primary pull-md-right"
+                            [ngClass]="{disabled:!loginForm.form.valid}">Sign In
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div class="alert alert-danger" role="alert" [ngClass]="{invisible:!invalidLogin}">
+            Look like you are not Bob.
+        </div>
     </div>
-    <div class="row" (logged-in) = "window.alert('!!!')">
-        <button class="btn btn-primary pull-md-right"
-                [ngClass]="{disabled:!loginForm.form.valid}">Sign In</button>
-    </div>
-</form>
+</div>
