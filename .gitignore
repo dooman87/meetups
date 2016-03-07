@@ -1,0 +1,5 @@
+/angular2/demo/app/*.js
+/angular2/demo/app/*.map
+**/.idea
+*.iml
+**/out
