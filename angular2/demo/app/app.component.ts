@@ -7,9 +7,9 @@ import {UserService} from './user.service';
 import {HTTP_PROVIDERS} from 'angular2/http';
 
 @Component({
-    selector: 'my-app',
+    selector: 'demo-app',
     template: `
-        <nav></nav>
+        <demo-nav></demo-nav>
 
         <div class="container">
             <router-outlet></router-outlet>

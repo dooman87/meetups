@@ -2,7 +2,7 @@ import {Component} from 'angular2/core';
 import {User} from './user'
 
 @Component({
-    selector: 'nav',
+    selector: 'demo-nav',
     template: `
         <div class="navbar navbar-light bg-faded">
             <a class="navbar-brand" href="#">NG2 DEMO</a>

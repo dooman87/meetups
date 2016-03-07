@@ -3,6 +3,7 @@ MAINTAINER Dmitry Pokidov
 
 RUN apk add --update nodejs git python make g++ bash && rm -rf /var/cache/apk/*
 
+ADD app/ angular2/demo/app/
 ADD server.js /angular2/demo/
 ADD package.json /angular2/demo/
 ADD typings.json /angular2/demo/

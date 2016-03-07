@@ -5,10 +5,20 @@ import {EmailValidatorDirective} from './email-validator.directive'
 import {UserService} from './user.service'
 import {User} from './user'
 
+
 @Component({
-    selector: 'login-form',
+    selector: 'demo-login-form',
     templateUrl: 'app/login-form.component.html',
-    directives: [EmailValidatorDirective]
+    styles: [
+        `.login-form-wrapper {
+            padding: 1.25rem;
+            margin-top: 1.25rem;
+            margin-bottom: 1.25rem;
+            border: 1px solid #eee;
+            border-radius: .25rem;
+        }`
+    ],
+    directives: [EmailValidatorDirective],
 })
 export class LoginFormComponent{
     model = new Login();
